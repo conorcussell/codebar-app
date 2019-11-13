@@ -6,22 +6,27 @@ import questions from './questions'
 function ImageButton({ text, onClick, image }) {
   return (
     <button onClick={() => onClick(text)}>
-      <img src={image} />
+      {/* <img src={image} /> */}
+      {text}
     </button>
   )
 }
 
-let question = questions[0]
+// let question = questions[0]
 
 function App() {
-  // const [currentQuestion, setCurrentQuestion] = useState(questions[0])
+  const [currentQuestion, setCurrentQuestion] = useState(0)
   const [answer, setAnswer] = useState(null)
 
-  function onClick(text) {
-    let correctAnswer = 'Red car'
+  const question = questions[currentQuestion]
 
-    if (correctAnswer === text) {
+  function onClick(text) {
+    if (question.correctAnswer === text) {
       setAnswer('Yay!')
+
+      if (currentQuestion < questions.length - 1) {
+        setCurrentQuestion(currentQuestion + 1)
+      }
     } else {
       setAnswer('Incorrect')
     }

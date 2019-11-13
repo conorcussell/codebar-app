@@ -1,6 +1,7 @@
 export default [
   {
     questionText: 'Touch the red car',
+    correctAnswer: 'Red car',
     answers: [
       {
         text: 'Red car',
@@ -16,6 +17,7 @@ export default [
   },
   {
     questionText: 'Touch the Tree',
+    correctAnswer: 'Tree',
     answers: [
       {
         text: 'Tree'
