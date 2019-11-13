@@ -1,26 +1,47 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import logo from './logo.svg'
+import './App.css'
+import questions from './questions'
 
-function App() {
+function ImageButton({ text, onClick, image }) {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <button onClick={() => onClick(text)}>
+      <img src={image} />
+    </button>
+  )
 }
 
-export default App;
+let question = questions[0]
+
+function App() {
+  // const [currentQuestion, setCurrentQuestion] = useState(questions[0])
+  const [answer, setAnswer] = useState(null)
+
+  function onClick(text) {
+    let correctAnswer = 'Red car'
+
+    if (correctAnswer === text) {
+      setAnswer('Yay!')
+    } else {
+      setAnswer('Incorrect')
+    }
+  }
+
+  return (
+    <div className="App">
+      <h1>{question.questionText}</h1>
+
+      {question.answers.map(answer => (
+        <ImageButton
+          text={answer.text}
+          image={answer.image}
+          onClick={onClick}
+        />
+      ))}
+
+      {answer && <h1>{answer}</h1>}
+    </div>
+  )
+}
+
+export default App
